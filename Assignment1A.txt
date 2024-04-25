@@ -1,0 +1,30 @@
+﻿using System;
+
+class Program
+{
+    static void Main()
+    {
+        // Get user input for each part of the URL
+        Console.Write("Scheme: ");
+        string scheme = Console.ReadLine();
+
+        Console.Write("Subdomain: ");
+        string subdomain = Console.ReadLine();
+
+        Console.Write("Second-level domain: ");
+        string secondLevelDomain = Console.ReadLine();
+
+        Console.Write("Top-level domain: ");
+        string topLevelDomain = Console.ReadLine();
+
+        Console.Write("Subdirectory: ");
+        string subdirectory = Console.ReadLine();
+
+        // Combine the input to form the URL
+        string url = $"{scheme}://{subdomain}.{secondLevelDomain}.{topLevelDomain}/{subdirectory}";
+
+        // Print the resulting URL
+        Console.WriteLine("Your URL is:");
+        Console.WriteLine(url);
+    }
+}

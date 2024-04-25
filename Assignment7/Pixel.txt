@@ -1,0 +1,38 @@
+using System;
+
+public class Pixel
+{
+    private int red;
+    private int green;
+    private int blue;
+
+    // Default constructor
+    public Pixel()
+    {
+        red = 255;
+        green = 255;
+        blue = 255;
+    }
+
+    // Overloaded constructor
+    public Pixel(int r, int g, int b)
+    {
+        red = r;
+        green = g;
+        blue = b;
+    }
+
+    // Method to change RGB values
+    public void ChangeRGB(int r, int g, int b)
+    {
+        red = r;
+        green = g;
+        blue = b;
+    }
+
+    // Method to print RGB values
+    public void PrintRGB()
+    {
+        Console.WriteLine($"{red} {green} {blue}");
+    }
+}

@@ -1,0 +1,40 @@
+using System;
+
+public class Lab12A
+{
+    public static void Main()
+    {
+        Console.WriteLine("You are about to create a chair.");
+        Console.Write("How many legs does your chair have: ");
+        int legs = int.Parse(Console.ReadLine());
+        Console.Write("Is your chair rolling (true/false): ");
+        bool isRolling = bool.Parse(Console.ReadLine());
+        Console.Write("What is your chair made of: ");
+        string material = Console.ReadLine();
+
+        Chair myChair = new Chair(legs, isRolling, material);
+        Console.WriteLine($"Your chair has {myChair.numOfLegs} legs, is {(myChair.rolling ? "rolling" : "not rolling")}, and is made of {myChair.material}.");
+
+        // Changing attributes to demonstrate understanding of the dot operator
+        myChair.numOfLegs = 4;
+        myChair.rolling = false;
+        myChair.material = "wood";
+        Console.WriteLine("This program is going to change that.");
+        Console.WriteLine($"Your chair has {myChair.numOfLegs} legs, is {(myChair.rolling ? "rolling" : "not rolling")}, and is made of {myChair.material}.");
+    }
+}
+
+public class Chair
+{
+    public int numOfLegs;
+    public bool rolling;
+    public string material;
+
+    // Constructor
+    public Chair(int legs, bool isRolling, string mat)
+    {
+        numOfLegs = legs;
+        rolling = isRolling;
+        material = mat;
+    }
+}

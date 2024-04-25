@@ -1,0 +1,66 @@
+using System;
+
+public class Program
+{
+    public static void Main()
+    {
+        Console.WriteLine("You are about to create a dog");
+        Console.Write("How old is the dog: ");
+        int age = int.Parse(Console.ReadLine());
+        Console.Write("How much does the dog weigh: ");
+        double weight = double.Parse(Console.ReadLine());
+        Console.Write("What is the dog's name: ");
+        string name = Console.ReadLine();
+        Console.Write("What color is the dog: ");
+        string furColor = Console.ReadLine();
+        Console.Write("What breed is the dog: ");
+        string breed = Console.ReadLine();
+
+        Dog myDog = new Dog(age, weight, name, furColor, breed);
+        Console.WriteLine($"{name} is a {age} year old {breed} that weighs {weight} lbs.");
+        myDog.Bark();
+
+        Console.Write($"{name} is hungry, how much should he eat: ");
+        double foodAmount = double.Parse(Console.ReadLine());
+        myDog.Eat(foodAmount);
+
+        Console.Write($"{name} isn't a very good name. What should they be renamed to: ");
+        string newName = Console.ReadLine();
+        myDog.Rename(newName);
+
+        Console.WriteLine($"{myDog.name} is a {myDog.age} year old {myDog.furColor} {myDog.breed} that weighs {myDog.weight} lbs.");
+    }
+}
+
+public class Dog
+{
+    public int age;
+    public double weight;
+    public string name;
+    public string furColor;
+    public string breed;
+
+    public Dog(int age, double weight, string name, string furColor, string breed)
+    {
+        this.age = age;
+        this.weight = weight;
+        this.name = name;
+        this.furColor = furColor;
+        this.breed = breed;
+    }
+
+    public void Bark()
+    {
+        Console.WriteLine("Woof! Woof!");
+    }
+
+    public void Rename(string newName)
+    {
+        name = newName;
+    }
+
+    public void Eat(double amount)
+    {
+        weight += amount;
+    }
+}

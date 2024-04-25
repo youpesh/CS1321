@@ -1,0 +1,129 @@
+using System;
+
+public class Assignment7B
+{
+    public static void Main(string[] args)
+    {
+        Console.WriteLine("[Portable Pix Map Art Program]");
+
+        Console.Write("Enter an image width: ");
+        int width = Convert.ToInt32(Console.ReadLine());
+
+        Console.Write("Enter an image height: ");
+        int height = Convert.ToInt32(Console.ReadLine());
+
+        Console.Write("Enter the fill color’s red value: ");
+        int fillRed = Convert.ToInt32(Console.ReadLine());
+
+        Console.Write("Enter the fill color’s green value: ");
+        int fillGreen = Convert.ToInt32(Console.ReadLine());
+
+        Console.Write("Enter the fill color’s blue value: ");
+        int fillBlue = Convert.ToInt32(Console.ReadLine());
+
+        Pixel[,] image = new Pixel[height, width];
+
+        // Initialize all pixels with the fill color
+        for (int i = 0; i < height; i++)
+        {
+            for (int j = 0; j < width; j++)
+            {
+                image[i, j] = new Pixel(fillRed, fillGreen, fillBlue);
+            }
+        }
+
+        while (true)
+        {
+            Console.WriteLine("What will you do?");
+            Console.WriteLine("1) Fill in a pixel");
+            Console.WriteLine("2) Fill in a line");
+            Console.WriteLine("3) Print the image");
+            Console.WriteLine("4) Quit");
+
+            Console.Write("Choice? ");
+            int choice = Convert.ToInt32(Console.ReadLine());
+
+            switch (choice)
+            {
+                case 1:
+                    Console.Write("Row: ");
+                    int row = Convert.ToInt32(Console.ReadLine());
+                    Console.Write("Column: ");
+                    int column = Convert.ToInt32(Console.ReadLine());
+                    Console.Write("New Red Color: ");
+                    int newRed = Convert.ToInt32(Console.ReadLine());
+                    Console.Write("New Green Color: ");
+                    int newGreen = Convert.ToInt32(Console.ReadLine());
+                    Console.Write("New Blue Color: ");
+                    int newBlue = Convert.ToInt32(Console.ReadLine());
+
+                    if (row >= 0 && row < height && column >= 0 && column < width)
+                    {
+                        image[row, column].ChangeRGB(newRed, newGreen, newBlue);
+                        Console.WriteLine("Pixel color changed.");
+                    }
+                    else
+                    {
+                        Console.WriteLine("Invalid row or column.");
+                    }
+                    break;
+                case 2:
+                    Console.Write("Row: ");
+                    int lineRow = Convert.ToInt32(Console.ReadLine());
+                    Console.Write("Column: ");
+                    int lineColumn = Convert.ToInt32(Console.ReadLine());
+                    Console.Write("Length: ");
+                    int length = Convert.ToInt32(Console.ReadLine());
+                    Console.Write("New Red Color: ");
+                    int lineRed = Convert.ToInt32(Console.ReadLine());
+                    Console.Write("New Green Color: ");
+                    int lineGreen = Convert.ToInt32(Console.ReadLine());
+                    Console.Write("New Blue Color: ");
+                    int lineBlue = Convert.ToInt32(Console.ReadLine());
+
+                    if (lineRow >= 0 && lineRow < height && lineColumn >= 0 && lineColumn + length <= width)
+                    {
+                        for (int i = 0; i < length; i++)
+                        {
+                            image[lineRow, lineColumn + i].ChangeRGB(lineRed, lineGreen, lineBlue);
+                        }
+                        Console.WriteLine("Line color changed.");
+                    }
+                    else
+                    {
+                        Console.WriteLine("Invalid row, column, or length.");
+                    }
+                    break;
+                case 3:
+                    PrintPPM(image);
+                    break;
+                case 4:
+                    Console.WriteLine("Quitting...");
+                    PrintPPM(image);
+                    return;
+                default:
+                    Console.WriteLine("Invalid choice.");
+                    break;
+            }
+        }
+    }
+
+    // Method to print the PPM file
+    public static void PrintPPM(Pixel[,] image)
+    {
+        int height = image.GetLength(0);
+        int width = image.GetLength(1);
+
+        Console.WriteLine("P3");
+        Console.WriteLine($"{width} {height}");
+        Console.WriteLine("255");
+
+        for (int i = 0; i < height; i++)
+        {
+            for (int j = 0; j < width; j++)
+            {
+                image[i, j].PrintRGB();
+            }
+        }
+    }
+}

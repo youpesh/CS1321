@@ -1,0 +1,73 @@
+using System;
+
+class BuildingBlueprint{
+
+ private int stories;
+ private int apps;
+ private float occupancy;
+ private bool full;
+
+  public BuildingBlueprint(){
+    stories = 10;
+    apps = 20;
+    occupancy = 1f;
+    full = true;
+  }
+
+  public BuildingBlueprint(int stories, int apps, float occupancy){
+    this.stories = stories;
+    this.apps = apps;
+    this.occupancy = occupancy;
+
+    full = (occupancy >= 1);
+  }
+
+  public int getStories(){
+    return stories;
+  }
+
+  public int getApps(){
+    return apps;
+  }
+
+  public float getOccupancy(){
+    return occupancy;
+  }
+
+  public bool isFull(){
+    return full;
+  }
+
+  public void setOccupancy(float rate){
+    occupancy = rate;
+    full  = (occupancy >= 1);
+  }
+
+}
+
+class Program {
+  public static void Main (string[] args) {
+
+    BuildingBlueprint buildingOne = new BuildingBlueprint();
+    BuildingBlueprint buildingTwo = new BuildingBlueprint(30,30,.75f);
+
+    Console.WriteLine("Year 2020:");
+    Console.WriteLine("Building 1 has " + buildingOne.getStories() + " floors, " + buildingOne.getApps() + " apartments, and is " + buildingOne.getOccupancy()*100 + "% occupied. Full? " + buildingOne.isFull());
+
+    Console.WriteLine("Building 2 has " + buildingTwo.getStories() + " floors, " + buildingTwo.getApps() + " apartments, and is " + buildingTwo.getOccupancy()*100 + "% occupied. Full? " + buildingTwo.isFull());
+
+
+    Console.WriteLine("\nMany years pass.\n");
+    
+    buildingOne.setOccupancy(0);
+    buildingTwo.setOccupancy(1);
+
+
+    Console.WriteLine("Year 2043:");
+    Console.WriteLine("Building 1 has " + buildingOne.getStories() + " floors, " + buildingOne.getApps() + " apartments, and is " + buildingOne.getOccupancy()*100 + "% occupied. Full? " + buildingOne.isFull());
+
+    Console.WriteLine("Building 2 has " + buildingTwo.getStories() + " floors, " + buildingTwo.getApps() + " apartments, and is " + buildingTwo.getOccupancy()*100 + "% occupied. Full? " + buildingTwo.isFull());
+
+    Console.WriteLine("\nLooks like people prefer taller buildings.");
+  }
+}

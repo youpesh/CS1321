@@ -1,0 +1,45 @@
+public class FSA
+{
+    private int state;
+
+    // Overloaded constructor
+    public FSA(int state)
+    {
+        if (state < 0 || state > 3)
+        {
+            Console.WriteLine("This is an invalid state. Starting at state 0");
+            this.state = 0;
+        }
+        else
+        {
+            this.state = state;
+        }
+    }
+
+    // Method to go to the next state
+    public int GoToNextState()
+    {
+        switch (state)
+        {
+            case 0:
+                state = 1;
+                break;
+            case 1:
+                state = 2;
+                break;
+            case 2:
+                state = 3;
+                break;
+            case 3:
+                // No change as state 3 is the final state
+                break;
+        }
+        return state;
+    }
+
+    // Method to check if the state is the final state
+    public bool End()
+    {
+        return state == 3;
+    }
+}

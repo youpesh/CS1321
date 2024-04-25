@@ -1,0 +1,46 @@
+using System;
+
+public class Assignment7A
+{
+    public static void Main(string[] args)
+    {
+        Console.WriteLine("[Finite State Automata]");
+        Console.Write("What state do you want to start at? ");
+        int initialState = Convert.ToInt32(Console.ReadLine());
+
+        // Create a new FSA object
+        FSA fsa = new FSA(initialState);
+
+        while (true)
+        {
+            Console.WriteLine("What will you do?");
+            Console.WriteLine(">Go to next state");
+            Console.WriteLine(">End");
+
+            string choice = Console.ReadLine().ToLower();
+
+            if (choice == "go to next state")
+            {
+                int nextState = fsa.GoToNextState();
+                Console.WriteLine($"You’re now at state {nextState}.");
+            }
+            else if (choice == "end")
+            {
+                if (fsa.End())
+                {
+                    Console.WriteLine("END");
+                    Console.WriteLine("The FSA has shut down.");
+                    break;
+                }
+                else
+                {
+                    Console.WriteLine("You can’t stop here; you can only stop at state 3.");
+                }
+            }
+            else
+            {
+                Console.WriteLine("[Invalid command!]");
+            }
+        }
+    }
+}
